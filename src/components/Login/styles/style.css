@@ -1,0 +1,25 @@
+.containerStyle{
+    margin-top: 25vh;
+}
+
+.form{
+    max-width: 70%;
+    margin: auto;
+}
+
+.paper{
+    padding: 40px;
+}
+
+.input{
+    margin-top: 30px;
+}
+.div-btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px
+}
+.div-spinner{
+    display: flex;
+    justify-content: center;
+}

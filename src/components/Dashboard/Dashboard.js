@@ -1,20 +1,31 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import Date from './Date'
+import DateScreem from './DateScreem'
 import ViewResults from './ViewResults'
-import Header from './Header'
+import { useStyles } from './styles/viewResultsStyle'
+import { Container, Box, Toolbar } from '@mui/material'
+
 
 const Dashboard = () => {
-    
-
-
+    const classes = useStyles()
     return (
         <>
-            <Header />
-            <Sidebar />
-            {/* 
-            <Date />
-            <ViewResults /> */}
+
+            <DateScreem />
+
+
+
+            <Toolbar />
+
+            <Container sx={{ display: "flex" }}>
+
+                <Sidebar />
+
+                <Box className={classes.box_view}>
+                    <ViewResults />
+                </Box>
+
+            </Container>
         </>
     )
 }

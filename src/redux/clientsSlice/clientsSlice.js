@@ -1,13 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
+import { getAuthorizationHeader } from "../../Services/privateApiService";
 
 export const getClient = createAsyncThunk('client/getClient',async () => {
     try{
-        const response = await axios.get(`https://admindev.inceptia.ai/api/v1/clients/`,{
-            headers: {
-                authorization : `JWT ${localStorage.getItem('token')}`
-            }
-        })
+        const response = await axios(process.env.REACT_APP_API_GET_CLIENTS ,getAuthorizationHeader())
         return response.data
     }
     catch(err) {

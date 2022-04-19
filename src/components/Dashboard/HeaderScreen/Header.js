@@ -1,10 +1,10 @@
 import React from 'react'
-import { Box, AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
+import { Box, AppBar, Toolbar, IconButton, Typography, Button, Grid } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { logOut } from '../../redux/authSlice/authSlice';
+import { logOut } from '../../../redux/authSlice/authSlice';
 import { useDispatch } from 'react-redux';
-import { useStyles } from './styles/headerStyle';
+import { useStyles } from '../styles/headerStyle';
 
 const Header = ({ setAbrir }) => {
     const classes = useStyles()
@@ -28,16 +28,18 @@ const Header = ({ setAbrir }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    
 
-                    <Button
-                        color="inherit"
-                        onClick={() => dispatch(logOut())}
-                    >
-                        <ExitToAppIcon sx={{ marginRight: '5px' }} />
-                        Log out
-                    </Button>
-                    
+                    <Box sx={{ flexGrow: 1}}>
+                        <Button
+                            color="inherit"
+                            onClick={() => dispatch(logOut())}
+                            
+                        >
+                            <ExitToAppIcon sx={{ marginRight: '5px' }} />
+                            Log out
+                        </Button>
+                    </Box>
+
                 </Toolbar>
             </AppBar>
         </Box>

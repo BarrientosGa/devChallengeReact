@@ -4,7 +4,7 @@ import { sweetAlertMixin } from '../../components/Utils/Alert/AlertState'
 
 export const loginUser = createAsyncThunk('user/loginUser', async (values) => {
     try {
-        const response = await axios.post(`https://admindev.inceptia.ai/api/v1/login/`, values)
+        const response = await axios.post(process.env.REACT_APP_API_POST_LOGIN , values)
         return response.data
     }
     catch (err) {

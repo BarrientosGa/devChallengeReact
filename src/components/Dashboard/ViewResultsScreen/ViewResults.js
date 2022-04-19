@@ -1,10 +1,10 @@
 import React from 'react'
 import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Box, Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useStyles } from './styles/viewResultsStyle'
+import { useStyles } from '../styles/viewResultsStyle'
 import TodayIcon from '@mui/icons-material/Today';
 import GroupWorkIcon from '@mui/icons-material/GroupWork';
-import Spinner from '../Utils/Spinner/Spinner'
+import Spinner from '../../Utils/Spinner/Spinner'
 
 const ViewResults = () => {
     const classes = useStyles()

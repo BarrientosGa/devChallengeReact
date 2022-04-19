@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './Login/Login'
-import store from '../redux/store/store'
+import Login from './components/Login/LoginScreen/Login'
+import store from './redux/store/store'
 import { Provider } from 'react-redux'
-import Dashboard from './Dashboard/Dashboard'
-import PrivateRoute from './PrivateRoute/PrivateRoute'
+import Dashboard from './components/Dashboard/Layout/Dashboard'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import { ThemeProvider } from '@mui/material'
-import {theme} from '../theme'
+import {theme} from './theme'
 
 const App = () => {
     return (

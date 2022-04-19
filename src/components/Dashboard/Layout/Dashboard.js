@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Sidebar from './Sidebar'
-import DateScreem from './DateScreem'
-import ViewResults from './ViewResults'
-import { useStyles } from './styles/viewResultsStyle'
+import Sidebar from '../SidebarScreen/Sidebar'
+import DateScreem from '../DateScreen/DateScreem'
+import ViewResults from '../ViewResultsScreen/ViewResults'
+import { useStyles } from '../styles/viewResultsStyle'
 import { Box, Hidden } from '@mui/material'
-import Header from './Header'
+import Header from '../HeaderScreen/Header'
 
 const Dashboard = () => {
     const classes = useStyles()

@@ -3,12 +3,12 @@ import moment from 'moment';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useStyles } from './styles/dateStyle';
+import { useStyles } from '../styles/dateStyle';
 import { Box } from '@mui/material'
-import { getCases } from '../../redux/casesSlice/casesSlice';
+import { getCases } from '../../../redux/casesSlice/casesSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import AdapterMoment from "@mui/lab/AdapterMoment";
-import { sweetAlertMixin } from '../Utils/Alert/AlertState';
+import { sweetAlertMixin } from '../../Utils/Alert/AlertState';
 import "moment/locale/es"
 
 

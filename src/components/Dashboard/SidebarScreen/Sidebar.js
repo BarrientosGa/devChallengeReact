@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getClient } from '../../redux/clientsSlice/clientsSlice'
+import { getClient } from '../../../redux/clientsSlice/clientsSlice'
 import { Drawer, Typography, List, ListItem, Toolbar, Divider } from '@mui/material'
-import { useStyles } from './styles/sidebarStyles'
+import { useStyles } from '../styles/sidebarStyles'
 
 const Sidebar = ({ variant, open, onClose }) => {
     const classes = useStyles()

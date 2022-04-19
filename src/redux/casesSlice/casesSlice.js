@@ -19,7 +19,7 @@ export const getCases = createAsyncThunk('cases/getCases', async (objeto) => {
 const caseSlice = createSlice({
     name: 'cases',
     initialState: {
-        cases: null,
+        cases: [],
         status: null
     },
     extraReducers: {
@@ -27,14 +27,8 @@ const caseSlice = createSlice({
             state.status = 'Loading'
         },
         [getCases.fulfilled]: (state, { payload }) => {
-            if(state.cases === null){
                 state.status = 'Success'
                 state.cases = payload.results
-            }
-            else{
-                state.cases = null
-            }
-                
         },
         [getCases.rejected]: (state) => {
             state.status = 'Failed'

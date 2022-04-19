@@ -5,9 +5,12 @@ import store from '../redux/store/store'
 import { Provider } from 'react-redux'
 import Dashboard from './Dashboard/Dashboard'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
+import { ThemeProvider } from '@mui/material'
+import {theme} from '../theme'
 
 const App = () => {
     return (
+        <ThemeProvider theme={theme}>
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
@@ -21,6 +24,7 @@ const App = () => {
                 </Routes>
             </BrowserRouter>
         </Provider>
+        </ThemeProvider>
     )
 }
 

@@ -6,7 +6,8 @@ export const useStyles = makeStyles({
         flexShrink: '0'
     }, */
     drawerPaper: {
-        width: '130px'
+        width: '130px',
+        backgroundColor: '#E5E5E5 !important',
     }
 })
 

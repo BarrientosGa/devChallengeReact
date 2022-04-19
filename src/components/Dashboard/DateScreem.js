@@ -1,17 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react'
 import moment from 'moment';
 import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useStyles } from './styles/dateStyle';
-import { Box, Container } from '@mui/material'
+import { Box } from '@mui/material'
 import { getCases } from '../../redux/casesSlice/casesSlice';
 import { useSelector, useDispatch } from 'react-redux'
-import { format, isAfter } from 'date-fns'
 import AdapterMoment from "@mui/lab/AdapterMoment";
 import { sweetAlertMixin } from '../Utils/Alert/AlertState';
-
+import "moment/locale/es"
 
 
 const DateScreem = () => {
@@ -22,75 +20,60 @@ const DateScreem = () => {
     const [hasta, setHasta] = useState(null);
     const [isDate, setIsDate] = useState(false)
     const debounceRef = useRef();
-    const ide = clients.map(({ id }) => {
-        return id
-    })
+    const ide = clients[0]
 
-    useEffect(() => {
-
+    const obtainCases = () => {
         if (debounceRef.current) {
             clearInterval(debounceRef.current);
         }
-        // ver que ninguna de las dos fechas esten vacias
+        if ((isDate) && (moment(hasta).isAfter(desde))) {
+            debounceRef.current = setTimeout(() => {
+                dispatch(getCases({ id: ide.id, desde, hasta }))
+            }, 500)
+        }
+        else if (((isDate) && (moment(hasta).isBefore(desde)))) {
+            return sweetAlertMixin('error', 'La fecha desde debe ser mayor o igual a hasta')
+        }
+    }
+
+    useEffect(() => {
         if ((desde && hasta) !== null) {
             setDesde(moment(desde).format('YYYY-MM-DD'))
             setHasta(moment(hasta).format('YYYY-MM-DD'))
             setIsDate(true)
-            /* console.log(desde);
-            console.log(hasta); */
         }
     }, [desde, hasta])
 
-
-
     useEffect(() => {
-        if (debounceRef.current) {
-            clearInterval(debounceRef.current);
-        }
-        // ver que el año de la fecha "hasta" sea mayor al año de "desde"
-
-        if ((isDate) && (moment(hasta).isAfter(desde))) {
-
-            dispatch(getCases({ id: ide[0], desde, hasta }))
-        }
+        obtainCases()
     }, [desde, hasta, isDate, dispatch])
 
-
     return (
-        <Container>
-            <Box className={classes.datePicker}>
-                <LocalizationProvider dateAdapter={AdapterMoment}  >
+        <>
+            <Box className={classes.box_datePicker}>
+                <LocalizationProvider dateAdapter={AdapterMoment} locale='es' >
                     <DatePicker
                         label='Desde'
                         value={desde}
                         onChange={(newValue) => {
                             setDesde(newValue);
                         }}
-
-                        /* inputFormat='yyyy-mm-dd' */
                         renderInput={(params) => <TextField {...params} />}
                     />
                 </LocalizationProvider>
 
-                <LocalizationProvider dateAdapter={AdapterMoment}>
+                <LocalizationProvider dateAdapter={AdapterMoment} locale='es' >
                     <DatePicker
                         label='Hasta'
                         value={hasta}
                         onChange={(newValue) => {
                             setHasta(newValue);
                         }}
-                        /* inputFormat='yyyy-mm-dd' */
                         renderInput={(params) => <TextField {...params} />}
                     />
                 </LocalizationProvider>
-
-
             </Box>
-        </Container>
-
-
-
-
+        </>
     )
 }
 

@@ -36,7 +36,13 @@ const userSlice = createSlice({
         [loginUser.rejected]: (state) => {
             state.status = 'Failed'
         }
+    },
+    reducers:{
+        logOut: (state) => {
+            state.token = ""
+            localStorage.clear()
+        }
     }
 })
-
+export const {logOut} = userSlice.actions
 export default userSlice.reducer

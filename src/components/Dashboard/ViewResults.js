@@ -1,67 +1,67 @@
 import React from 'react'
-import { Table, TableCell, TableContainer, TableHead, TableRow, Paper, TableBody } from '@mui/material';
+import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Box, Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
-/* import {useStyles} from './styles/viewResultsStyle' */
-
-
-
-
-
+import { useStyles } from './styles/viewResultsStyle'
+import TodayIcon from '@mui/icons-material/Today';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+import Spinner from '../Utils/Spinner/Spinner'
 
 const ViewResults = () => {
-    /* const classes = useStyles() */
-    const { cases } = useSelector(state => state.case)
+    const classes = useStyles()
+    const { cases, status } = useSelector(state => state.case)
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Paper className={classes.containerList}>
+            <Table>
                 <TableHead>
-                    <TableRow>
-                        <TableCell align="right">Gestionado</TableCell>
-                        <TableCell align="right">ID Caso</TableCell>
-                        <TableCell align="right">Telefono</TableCell>
-                        <TableCell align="right">Dni</TableCell>
-                        <TableCell align="right">Grupo</TableCell>
-                        <TableCell align="right">Orden</TableCell>
-                        <TableCell align="right">Llamada</TableCell>
-                        <TableCell align="right">Estado</TableCell>
+                    <TableRow className={classes.tr}>
+                        <TableCell className={classes.th} align="left">Gestionado</TableCell>
+                        <TableCell className={classes.th} align="left">ID Caso</TableCell>
+                        <TableCell className={classes.th} align="left">Telefono</TableCell>
+                        <TableCell className={classes.th} align="left">Dni</TableCell>
+                        <TableCell className={classes.th} align="left">Grupo</TableCell>
+                        <TableCell className={classes.th} align="left">Orden</TableCell>
+                        <TableCell className={classes.th} align="left">Llamada</TableCell>
+                        <TableCell className={classes.th} align="left">Estado</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {cases!==null && cases.map(({ id, last_updated, case_uuid, phone, extra_metadata, case_duration,case_result }) => (
+                    {status === 'Loading' ? <Spinner className={classes.box_spinner} /> : cases.map(({ id, last_updated, case_uuid, phone, extra_metadata, case_duration, case_result }) => (
                         <TableRow
+                            className={classes.tr}
                             key={id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell >
+                            <TableCell className={classes.td}  component="th" scope="row" sx={{ display: 'flex', alignItems: 'center', color: 'red' }} >
+                                <TodayIcon sx={{ color: '#AC0202' }} />
                                 {last_updated}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={{ color: '#274698' }}>
                                 {case_uuid}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={{ fontWeight: 'bold', color: '#274698' }}  >
                                 {phone}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={{ color: 'red' }}>
                                 {extra_metadata.dni}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={{ color: 'red' }} >
                                 {extra_metadata.grupo}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={{ color: 'red' }} >
                                 {extra_metadata.orden}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={{ display: 'flex', alignItems: 'center', color: 'red' }}>
+                                <GroupWorkIcon sx={{ color: '#AC0202' }} />
                                 {case_duration}
                             </TableCell>
 
-                            <TableCell >
+                            <TableCell className={classes.td} sx={case_result.is_final === false ? { backgroundColor: '#E9C1C1' } : { backgroundColor: '#E1EEFD' }}>
                                 {case_result.name}
                             </TableCell>
 
@@ -69,7 +69,7 @@ const ViewResults = () => {
                     ))}
                 </TableBody>
             </Table>
-        </TableContainer >
+        </Paper >
     )
 }
 

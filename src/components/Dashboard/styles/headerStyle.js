@@ -1,8 +1,12 @@
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
-    appbar: {
+
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         width: 'calc(100% - 130px)',
-        ml: '180px',
+        marginLeft: '130px'
     }
 })

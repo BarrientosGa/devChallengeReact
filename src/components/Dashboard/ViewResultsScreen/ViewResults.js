@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Box, Paper } from '@mui/material';
+import { Table, TableCell, TableHead, TableRow, TableBody, Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useStyles } from '../styles/viewResultsStyle'
 import TodayIcon from '@mui/icons-material/Today';

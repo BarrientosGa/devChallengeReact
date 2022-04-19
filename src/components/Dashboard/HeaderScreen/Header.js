@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, AppBar, Toolbar, IconButton, Typography, Button, Grid } from '@mui/material'
+import { Box, AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { logOut } from '../../../redux/authSlice/authSlice';
@@ -11,10 +11,9 @@ const Header = ({ setAbrir }) => {
     const dispatch = useDispatch()
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
             <AppBar
                 position="static"
-                className={classes.appbar}
+                /* className={classes.appbar} */
                 sx={{ backgroundColor: '#AC0202' }}
             >
                 <Toolbar>
@@ -29,20 +28,22 @@ const Header = ({ setAbrir }) => {
                         <MenuIcon />
                     </IconButton>
 
-                    <Box sx={{ flexGrow: 1}}>
+                    <Box className={classes.container}>
                         <Button
                             color="inherit"
                             onClick={() => dispatch(logOut())}
-                            
+
                         >
                             <ExitToAppIcon sx={{ marginRight: '5px' }} />
                             Log out
                         </Button>
                     </Box>
 
+
+
+
                 </Toolbar>
             </AppBar>
-        </Box>
     )
 }
 

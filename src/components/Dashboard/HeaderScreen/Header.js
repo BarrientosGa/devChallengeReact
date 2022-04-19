@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
+import { Box, AppBar, Toolbar, IconButton, Button } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { logOut } from '../../../redux/authSlice/authSlice';
@@ -13,7 +13,6 @@ const Header = ({ setAbrir }) => {
     return (
             <AppBar
                 position="static"
-                /* className={classes.appbar} */
                 sx={{ backgroundColor: '#AC0202' }}
             >
                 <Toolbar>

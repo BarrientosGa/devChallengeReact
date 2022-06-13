@@ -39,8 +39,8 @@ const userSlice = createSlice({
     },
     reducers:{
         logOut: (state) => {
-            state.token = ""
             localStorage.clear()
+            state.token = ""
         }
     }
 })
